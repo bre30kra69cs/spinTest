@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outFile": "dist/index.js",
+    "outDir": "dist",
     "target": "ES6",
     "lib": ["DOM", "ESNext"],
-    "module": "AMD",
+    "module": "ES2015",
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "strict": true,
