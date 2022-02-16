@@ -1,0 +1,16 @@
+{
+  "name": "spintest",
+  "version": "0.0.1",
+  "description": "spin test task",
+  "author": "Andrey Krasovsky <an.krasowsckij@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist tsconfig.tsbuildinfo"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.5"
+  }
+}

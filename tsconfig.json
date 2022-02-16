@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "outFile": "dist/index.js",
+    "target": "ES6",
+    "lib": ["DOM", "ESNext"],
+    "module": "AMD",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "declaration": false,
+    "allowJs": false,
+    "downlevelIteration": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}
