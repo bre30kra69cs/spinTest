@@ -13,7 +13,8 @@
     "declaration": false,
     "allowJs": false,
     "downlevelIteration": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
   "include": ["types", "src"]
 }
