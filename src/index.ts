@@ -1,27 +1,11 @@
-import {createNearInstance} from './api';
-import {createStore} from './store';
+import {near} from './api';
+import {initToasts} from './features/toasts/init';
+import {pushToast} from './features/toasts/actions';
 
-const store = createStore(
-  {
-    test: '',
-  },
-  {
-    logger: true,
-  },
-);
-
-// store.dispatch((state) => {
-//   return {
-//     ...state,
-//     test: 'test',
-//   };
-// }, 'testAction');
-
-const near = createNearInstance();
+initToasts();
 
 const main = async () => {
-  const result = await near.connect();
-  console.log(result);
+  await near.signIn();
 };
 
 main();

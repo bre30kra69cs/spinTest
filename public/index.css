@@ -1,3 +1,26 @@
 p {
   color: red;
 }
+
+#toasts {
+  position: fixed;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+#toasts .toast {
+  margin-bottom: 0.3em;
+}
+
+.toast {
+  cursor: pointer;
+  background-color: tomato;
+  width: 15em;
+  padding: 0.3em 0.5em;
+  border-radius: 4px;
+}
+
+.toast span {
+  color: white;
+  font-size: 1em;
+}
