@@ -9,4 +9,10 @@ declare global {
     type WalletConnection = NearApi.WalletConnection;
     type Near = NearApi.Near;
   }
+
+  namespace NodeJS {
+    interface ProcessEnv {
+      PRODUCTION?: boolean;
+    }
+  }
 }

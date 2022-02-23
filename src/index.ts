@@ -1,11 +1,9 @@
-import {near} from './api';
 import {initToasts} from './features/toasts/init';
-import {pushToast} from './features/toasts/actions';
+import {initSession} from './features/session/init';
+import {initUser} from './features/user/init';
+import {initGuards} from './features/guards/init';
 
+initGuards();
 initToasts();
-
-const main = async () => {
-  await near.signIn();
-};
-
-main();
+initSession();
+initUser();

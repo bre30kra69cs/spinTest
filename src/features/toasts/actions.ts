@@ -8,7 +8,7 @@ const counter = createCounter();
 export const pushToast = async (toast: Omit<Toast, 'id'>) => {
   const id = counter.gen((value) => `toast${value}`);
   store.dispatch({
-    name: 'toast/pushToast/pending',
+    name: 'toasts/pushToast/push',
     payload: (state) => {
       return {
         ...state,
@@ -24,7 +24,7 @@ export const pushToast = async (toast: Omit<Toast, 'id'>) => {
   });
   await wait(toast.duration);
   store.dispatch({
-    name: 'toast/pushToast/done',
+    name: 'toasts/pushToast/done',
     payload: (state) => {
       return {
         ...state,
@@ -36,7 +36,7 @@ export const pushToast = async (toast: Omit<Toast, 'id'>) => {
 
 export const removeToast = (id: string) => {
   store.dispatch({
-    name: 'toast/removeToast',
+    name: 'toasts/removeToast',
     payload: (state) => {
       return {
         ...state,

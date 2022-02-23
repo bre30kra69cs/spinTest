@@ -1,7 +1,3 @@
-p {
-  color: red;
-}
-
 #toasts {
   position: fixed;
   top: 0.5em;
@@ -14,13 +10,94 @@ p {
 
 .toast {
   cursor: pointer;
-  background-color: tomato;
+  background-color: #da1212;
   width: 15em;
-  padding: 0.3em 0.5em;
+  padding: 0.5em 1em;
   border-radius: 4px;
 }
 
 .toast span {
   color: white;
   font-size: 1em;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  background-color: rgb(180, 180, 180);
+  min-width: 20em;
+  padding: 2em;
+  border-radius: 4px;
+}
+
+.info_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_section__hide {
+  display: none;
+}
+
+.info_signin {
+  cursor: pointer;
+  padding: 0;
+  border-width: 0;
+  background-color: rgb(17, 70, 143);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  font-size: 1em;
+  min-width: 10em;
+}
+
+.info_signin:hover {
+  background-color: rgb(37, 90, 163);
+}
+
+.info_section_title {
+  color: black;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader__hide {
+  display: none;
+}
+
+.loader_indicator {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid rgb(37, 90, 163);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

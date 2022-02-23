@@ -1,5 +1,6 @@
 import {response} from './response';
 import {invariant} from '../utils/invariant';
+import {wait} from '../utils/wait';
 
 type InstanceConfig = {
   onError?: (message?: string) => void;
@@ -35,6 +36,7 @@ export const createNearInstance = (config?: InstanceConfig) => {
 
   const connect = helepr(async () => {
     connection = await nearApi.connect(CONFIG);
+    await wait(1000);
     wallet = new nearApi.WalletConnection(connection, null);
   });
 
@@ -48,9 +50,15 @@ export const createNearInstance = (config?: InstanceConfig) => {
     wallet.signOut();
   });
 
+  const isSignedIn = helepr(async () => {
+    invariant(wallet, '[near] isSignedIn: wallet not created');
+    return wallet.isSignedIn();
+  });
+
   return {
     connect,
     signIn,
     signOut,
+    isSignedIn,
   };
 };
