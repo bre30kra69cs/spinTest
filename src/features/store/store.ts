@@ -5,8 +5,12 @@ export const store = createStore<StoreState>(
   {
     toasts: [],
     user: {
+      id: '',
+      balance: '',
       isSignInLoading: false,
       isSignedIn: false,
+      isIdLoading: false,
+      isBalanceLoading: false,
     },
     session: {
       isConnectLoading: true,
@@ -14,6 +18,11 @@ export const store = createStore<StoreState>(
     },
     shared: {
       isLoading: false,
+    },
+    markets: {
+      currentId: -1,
+      markets: [],
+      isMarketsLoading: false,
     },
   },
   {

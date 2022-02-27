@@ -5,9 +5,11 @@ declare global {
     const connect = NearApi.connect;
     const keyStores = NearApi.keyStores;
     const WalletConnection = NearApi.WalletConnection;
+    const Contract = NearApi.Contract;
 
     type WalletConnection = NearApi.WalletConnection;
     type Near = NearApi.Near;
+    type Contract = NearApi.Contract;
   }
 
   namespace NodeJS {

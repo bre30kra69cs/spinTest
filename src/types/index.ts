@@ -6,8 +6,11 @@ export type Toast = {
 
 export type User = {
   id?: string;
+  balance?: string;
   isSignInLoading: boolean;
   isSignedIn: boolean;
+  isBalanceLoading: boolean;
+  isIdLoading: boolean;
 };
 
 export type Session = {
@@ -24,4 +27,39 @@ export type StoreState = {
   user: User;
   session: Session;
   shared: Shared;
+  markets: Markets;
+};
+
+type MarketItem = {
+  address: string;
+  decimal: number;
+  ticker: string;
+};
+
+export type Market = {
+  fee: number;
+  id: number;
+  base: MarketItem;
+  quote: MarketItem;
+};
+
+export type Markets = {
+  view?: MarketView;
+  markets: Market[];
+  currentId: number;
+  isMarketsLoading: boolean;
+};
+
+export type MarketViewArg = {
+  market_id: number;
+};
+
+type MarketViewItem = {
+  price: number;
+  quantity: number;
+};
+
+export type MarketView = {
+  ask_orders: MarketViewItem[];
+  bid_orders: MarketViewItem[];
 };

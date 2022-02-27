@@ -13,7 +13,6 @@ export const initRouter = () => {
       (state) => state.user.isSignedIn,
       (state) => {
         if (state.user.isSignedIn) {
-          console.log('Profile');
           render(root, Profile);
         } else {
           render(root, Signin);

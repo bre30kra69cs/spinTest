@@ -1,6 +1,7 @@
 import {response} from './response';
 import {invariant} from '../utils/invariant';
 import {wait} from '../utils/wait';
+import {Market, MarketViewArg, MarketView} from '../types';
 
 type InstanceConfig = {
   onError?: (message?: string) => void;
@@ -23,11 +24,12 @@ const CONFIG = {
 export const createNearInstance = (config?: InstanceConfig) => {
   let connection: nearApi.Near;
   let wallet: nearApi.WalletConnection;
+  let contract: nearApi.Contract;
 
   const helper =
-    <T>(fn: () => Promise<T>) =>
-    async () => {
-      const result = await response(fn);
+    <T, A>(fn: (arg?: A) => Promise<T>) =>
+    async (arg?: A) => {
+      const result = await response(async () => await fn(arg));
 
       if (config?.onError && result.type === 'ERROR') {
         config.onError?.(result.message);
@@ -40,6 +42,10 @@ export const createNearInstance = (config?: InstanceConfig) => {
     connection = await nearApi.connect(CONFIG);
     await wait(1000);
     wallet = new nearApi.WalletConnection(connection, null);
+    contract = new nearApi.Contract(wallet.account(), CONTRACT_ID, {
+      viewMethods: ['markets', 'view_market'],
+      changeMethods: [],
+    });
   });
 
   const signIn = helper(async () => {
@@ -68,6 +74,16 @@ export const createNearInstance = (config?: InstanceConfig) => {
     return await wallet.account().getAccountBalance();
   });
 
+  const callContract = helper(async () => {
+    invariant(wallet, '[near] callContract: contract not created');
+    return (await (<any>contract)['markets']()) as Market[];
+  });
+
+  const callViewContract = helper(async (arg: MarketViewArg | undefined) => {
+    invariant(wallet, '[near] callViewContract: contract not created');
+    return (await (<any>contract)['view_market'](arg)) as MarketView;
+  });
+
   return {
     connect,
     signIn,
@@ -75,5 +91,7 @@ export const createNearInstance = (config?: InstanceConfig) => {
     isSignedIn,
     getUserId,
     getBalance,
+    callContract,
+    callViewContract,
   };
 };

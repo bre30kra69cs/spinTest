@@ -2,6 +2,8 @@ import {store} from '../../store/store';
 import {isSignedIn} from './isSignedIn';
 import {connect} from './connect';
 import {userId} from './userId';
+import {balance} from './balance';
+import {markets} from './markets';
 
 export const fire = async () => {
   store.dispatch({
@@ -51,6 +53,38 @@ export const fire = async () => {
   const userIdResult = await userId();
 
   if (userIdResult.type === 'ERROR') {
+    store.dispatch({
+      name: 'session/fire/fail',
+      payload: (state) => {
+        return {
+          ...state,
+          shared: {
+            isLoading: false,
+          },
+        };
+      },
+    });
+  }
+
+  const balanceResult = await balance();
+
+  if (balanceResult.type === 'ERROR') {
+    store.dispatch({
+      name: 'session/fire/fail',
+      payload: (state) => {
+        return {
+          ...state,
+          shared: {
+            isLoading: false,
+          },
+        };
+      },
+    });
+  }
+
+  const marketsResult = await markets();
+
+  if (marketsResult.type === 'ERROR') {
     store.dispatch({
       name: 'session/fire/fail',
       payload: (state) => {

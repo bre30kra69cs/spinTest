@@ -22,7 +22,9 @@ export const render = (root: Node, component: Component) => {
   prevNode = node;
 
   const rerender = () => {
-    render(root, component);
+    if (prevNode === node) {
+      render(root, component);
+    }
   };
 
   if (component.effect) {
