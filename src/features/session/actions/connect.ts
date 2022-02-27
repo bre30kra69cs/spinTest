@@ -1,6 +1,6 @@
-import {store} from '../store/store';
-import {near} from '../../api';
-import {isSignedIn} from '../user/actions';
+import {store} from '../../store/store';
+import {near} from '../../../api';
+import {isSignedIn} from '../../signin/actions/isSignedIn';
 
 export const connect = async () => {
   store.dispatch({

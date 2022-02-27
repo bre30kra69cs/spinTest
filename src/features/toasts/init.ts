@@ -1,7 +1,7 @@
 import {store} from '../store/store';
 import {memo} from '../store/memo';
 import {Toast} from '../../types';
-import {removeToast} from './actions';
+import {removeToast} from './actions/removeToast';
 
 export const initToasts = () => {
   const toasts = document.getElementById('toasts');

@@ -15,4 +15,8 @@ declare global {
       PRODUCTION?: boolean;
     }
   }
+
+  type Undefinable<T> = T | undefined;
+
+  type Voidable<T> = T | void;
 }

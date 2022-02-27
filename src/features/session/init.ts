@@ -1,4 +1,4 @@
-import {connect} from './actions';
+import {connect} from './actions/connect';
 import {store} from '../store/store';
 import {memo} from '../store/memo';
 

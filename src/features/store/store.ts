@@ -17,3 +17,5 @@ export const store = createStore<StoreState>(
     logger: !process.env.PRODUCTION,
   },
 );
+
+export type Dispatch = typeof store['dispatch'];
