@@ -4,12 +4,18 @@ import {store} from '../store/store';
 import {memo} from '../store/memo';
 import {changeMarket} from './actions/changeMarket';
 import {viewMarket} from './actions/viewMarket';
+import {openMarket} from '../market/actions/openMarket';
 
 const CONTRACT_LINK = 'https://explorer.testnet.near.org/accounts/app_2.spin_swap.testnet';
 
 const onSelectMarket = (event: Event) => {
   const target = event.target as any;
   changeMarket(Number(target.value) ?? -1);
+};
+
+const onView = () => {
+  viewMarket();
+  openMarket();
 };
 
 export const Profile = createComponent({
@@ -71,10 +77,10 @@ export const Profile = createComponent({
     marketSelector?.addEventListener('change', onSelectMarket);
 
     const viewButton = document.getElementsByClassName('profile_view').item(0);
-    viewButton?.addEventListener('click', viewMarket);
+    viewButton?.addEventListener('click', onView);
 
     const unlistenuUserId = store.listen(
-      memo(
+      memo()(
         (state) => state.user.id,
         (state) => {
           if (state.user.id) {
@@ -85,7 +91,7 @@ export const Profile = createComponent({
     );
 
     const unlistenuBalance = store.listen(
-      memo(
+      memo()(
         (state) => state.user.balance,
         (state) => {
           if (state.user.balance) {
@@ -100,7 +106,7 @@ export const Profile = createComponent({
       unlistenuBalance?.();
       signOutButton?.removeEventListener('click', signOut);
       marketSelector?.removeEventListener('change', onSelectMarket);
-      viewButton?.removeEventListener('click', viewMarket);
+      viewButton?.removeEventListener('click', onView);
     };
   },
 });

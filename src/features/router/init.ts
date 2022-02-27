@@ -2,14 +2,16 @@ import {store} from '../store/store';
 import {memo} from '../store/memo';
 import {Signin} from '../signin/component';
 import {Profile} from '../profile/component';
-import {render} from '../../utils/render';
+import {createRender} from '../../utils/render';
+
+const render = createRender();
 
 export const initRouter = () => {
   const root = document.getElementById('root');
   if (!root) return;
 
   store.listen(
-    memo(
+    memo()(
       (state) => state.user.isSignedIn,
       (state) => {
         if (state.user.isSignedIn) {

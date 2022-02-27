@@ -3,7 +3,7 @@ import {memo} from '../store/memo';
 
 export const initShared = () => {
   store.listen(
-    memo(
+    memo()(
       (state) => state.shared.isLoading,
       (state) => {
         const loader = document.getElementsByClassName('loader').item(0);

@@ -23,6 +23,7 @@ export const store = createStore<StoreState>(
       currentId: -1,
       markets: [],
       isMarketsLoading: false,
+      isMarketOpen: false,
     },
   },
   {

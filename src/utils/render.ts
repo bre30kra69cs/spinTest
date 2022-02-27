@@ -1,37 +1,42 @@
 import {Component} from './component';
 import {html} from './html';
 
-let prevNode: ChildNode | undefined;
-let prevUnmount: (() => void) | undefined;
+export const createRender = () => {
+  let prevNode: ChildNode | null | undefined;
+  let prevUnmount: (() => void) | undefined;
 
-export const render = (root: Node, component: Component) => {
-  if (prevUnmount) {
-    prevUnmount();
-    prevUnmount = undefined;
-  }
+  const render = (root: Node, component: Component) => {
+    if (prevUnmount) {
+      prevUnmount();
+      prevUnmount = undefined;
+    }
 
-  if (prevNode) {
-    prevNode.remove();
-    prevNode = undefined;
-  }
+    if (prevNode) {
+      prevNode.remove();
+      prevNode = undefined;
+    }
 
-  const node = html(component.template());
-  if (!node) return;
+    const node = html(component.template());
+    prevNode = node;
 
-  root.appendChild(node);
-  prevNode = node;
+    if (node) {
+      root.appendChild(node);
+    }
 
-  const rerender = () => {
-    if (prevNode === node) {
-      render(root, component);
+    const rerender = () => {
+      if (prevNode === node) {
+        render(root, component);
+      }
+    };
+
+    if (component.effect) {
+      const unmout = component.effect(rerender);
+
+      if (unmout) {
+        prevUnmount = unmout;
+      }
     }
   };
 
-  if (component.effect) {
-    const unmout = component.effect(rerender);
-
-    if (unmout) {
-      prevUnmount = unmout;
-    }
-  }
+  return render;
 };

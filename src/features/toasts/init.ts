@@ -21,7 +21,7 @@ export const initToasts = () => {
   };
 
   store.listen(
-    memo(
+    memo()(
       (state) => state.toasts,
       (state) => {
         const toDelete = Object.keys(cache).filter((key) =>

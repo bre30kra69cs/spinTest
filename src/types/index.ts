@@ -48,6 +48,7 @@ export type Markets = {
   markets: Market[];
   currentId: number;
   isMarketsLoading: boolean;
+  isMarketOpen: boolean;
 };
 
 export type MarketViewArg = {
