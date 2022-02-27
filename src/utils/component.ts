@@ -1,6 +1,6 @@
 export type Component = {
-  template: string;
-  effect?: () => Voidable<() => void>;
+  template: () => string;
+  effect?: (rerender: () => void) => Voidable<() => void>;
 };
 
 export const createComponent = (component: Component) => {

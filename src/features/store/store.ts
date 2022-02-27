@@ -12,6 +12,9 @@ export const store = createStore<StoreState>(
       isConnectLoading: true,
       isConnected: false,
     },
+    shared: {
+      isLoading: false,
+    },
   },
   {
     logger: !process.env.PRODUCTION,

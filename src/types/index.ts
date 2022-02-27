@@ -5,6 +5,7 @@ export type Toast = {
 };
 
 export type User = {
+  id?: string;
   isSignInLoading: boolean;
   isSignedIn: boolean;
 };
@@ -14,8 +15,13 @@ export type Session = {
   isConnected: boolean;
 };
 
+export type Shared = {
+  isLoading: boolean;
+};
+
 export type StoreState = {
   toasts: Toast[];
   user: User;
   session: Session;
+  shared: Shared;
 };

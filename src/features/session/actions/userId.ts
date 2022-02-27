@@ -1,33 +1,31 @@
 import {store} from '../../store/store';
 import {near} from '../../../api';
 
-export const connect = async () => {
+export const userId = async () => {
   store.dispatch({
-    name: 'session/connect/push',
+    name: 'user/userId/push',
     payload: (state) => {
       return {
         ...state,
-        session: {
-          ...state.session,
-          isConnectLoading: true,
-          isConnected: false,
+        user: {
+          ...state.user,
+          isIdLoading: true,
         },
       };
     },
   });
 
-  const result = await near.connect();
+  const result = await near.getUserId();
 
   if (result.type === 'ERROR') {
     store.dispatch({
-      name: 'session/connect/fail',
+      name: 'user/userId/fail',
       payload: (state) => {
         return {
           ...state,
-          session: {
-            ...state.session,
-            isConnectLoading: false,
-            isConnected: false,
+          user: {
+            ...state.user,
+            isIdLoading: false,
           },
         };
       },
@@ -36,14 +34,14 @@ export const connect = async () => {
 
   if (result.type === 'OK') {
     store.dispatch({
-      name: 'session/connect/done',
+      name: 'user/userId/done',
       payload: (state) => {
         return {
           ...state,
-          session: {
-            ...state.session,
-            isConnectLoading: false,
-            isConnected: true,
+          user: {
+            ...state.user,
+            id: result.data || 'USER_ID',
+            isIdLoading: false,
           },
         };
       },

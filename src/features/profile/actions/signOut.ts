@@ -11,6 +11,9 @@ export const signOut = async () => {
           ...state.user,
           isSignInLoading: true,
         },
+        shared: {
+          isLoading: true,
+        },
       };
     },
   });
@@ -27,6 +30,9 @@ export const signOut = async () => {
             ...state.user,
             isSignInLoading: false,
           },
+          shared: {
+            isLoading: false,
+          },
         };
       },
     });
@@ -42,6 +48,9 @@ export const signOut = async () => {
             ...state.user,
             isSignInLoading: false,
             isSignedIn: false,
+          },
+          shared: {
+            isLoading: false,
           },
         };
       },

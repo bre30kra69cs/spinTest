@@ -15,14 +15,18 @@ export const render = (root: Node, component: Component) => {
     prevNode = undefined;
   }
 
-  const node = html(component.template);
+  const node = html(component.template());
   if (!node) return;
 
   root.appendChild(node);
   prevNode = node;
 
+  const rerender = () => {
+    render(root, component);
+  };
+
   if (component.effect) {
-    const unmout = component.effect();
+    const unmout = component.effect(rerender);
 
     if (unmout) {
       prevUnmount = unmout;

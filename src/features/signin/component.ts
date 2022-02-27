@@ -2,9 +2,9 @@ import {signIn} from './actions/signIn';
 import {createComponent} from '../../utils/component';
 
 export const Signin = createComponent({
-  template: `
+  template: () => `
     <section class="signin">
-      <p class="title">Welcome!</p>
+      <p class="title title__gap">Welcome!</p>
       <button class="button signin_button">Signin</button>
       <style>
       </style>

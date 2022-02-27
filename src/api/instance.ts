@@ -49,6 +49,7 @@ export const createNearInstance = (config?: InstanceConfig) => {
 
   const signOut = helper(async () => {
     invariant(wallet, '[near] signOut: wallet not created');
+    await wait(1000);
     wallet.signOut();
   });
 
@@ -59,7 +60,7 @@ export const createNearInstance = (config?: InstanceConfig) => {
 
   const getUserId = helper(async () => {
     invariant(wallet, '[near] getUserId: wallet not created');
-    return wallet.getAccountId();
+    return wallet.getAccountId() as string;
   });
 
   const getBalance = helper(async () => {

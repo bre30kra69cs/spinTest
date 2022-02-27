@@ -34,7 +34,7 @@ export const isSignedIn = async () => {
     });
   }
 
-  if (result.type === 'OK' && result.data) {
+  if (result.type === 'OK') {
     store.dispatch({
       name: 'user/isSignedIn/done',
       payload: (state) => {
@@ -43,23 +43,7 @@ export const isSignedIn = async () => {
           user: {
             ...state.user,
             isSignInLoading: false,
-            isSignedIn: true,
-          },
-        };
-      },
-    });
-  }
-
-  if (result.type === 'OK' && !result.data) {
-    store.dispatch({
-      name: 'user/isSignedIn/done',
-      payload: (state) => {
-        return {
-          ...state,
-          user: {
-            ...state.user,
-            isSignInLoading: false,
-            isSignedIn: false,
+            isSignedIn: !!result.data,
           },
         };
       },

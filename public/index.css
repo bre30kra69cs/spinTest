@@ -45,7 +45,15 @@ body {
 .title {
   color: black;
   font-size: 2em;
+}
+
+.title__gap {
   margin-bottom: 1em;
+}
+
+.subtitle {
+  color: rgb(100, 100, 100);
+  font-size: 1.5em;
 }
 
 .button {
