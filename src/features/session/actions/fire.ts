@@ -50,6 +50,21 @@ export const fire = async () => {
     });
   }
 
+  if (isSignInResult.type === 'OK' && !isSignInResult.data) {
+    store.dispatch({
+      name: 'session/fire/done',
+      payload: (state) => {
+        return {
+          ...state,
+          shared: {
+            isLoading: false,
+          },
+        };
+      },
+    });
+    return;
+  }
+
   const userIdResult = await userId();
 
   if (userIdResult.type === 'ERROR') {

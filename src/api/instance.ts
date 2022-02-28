@@ -40,7 +40,11 @@ export const createNearInstance = (config?: InstanceConfig) => {
 
   const connect = helper(async () => {
     connection = await nearApi.connect(CONFIG);
-    await wait(1000);
+
+    if (!process.env.PRODUCTION) {
+      await wait(1000);
+    }
+
     wallet = new nearApi.WalletConnection(connection, null);
     contract = new nearApi.Contract(wallet.account(), CONTRACT_ID, {
       viewMethods: ['markets', 'view_market'],
@@ -55,7 +59,11 @@ export const createNearInstance = (config?: InstanceConfig) => {
 
   const signOut = helper(async () => {
     invariant(wallet, '[near] signOut: wallet not created');
-    await wait(1000);
+
+    if (!process.env.PRODUCTION) {
+      await wait(1000);
+    }
+
     wallet.signOut();
   });
 
@@ -81,6 +89,11 @@ export const createNearInstance = (config?: InstanceConfig) => {
 
   const callViewContract = helper(async (arg: MarketViewArg | undefined) => {
     invariant(wallet, '[near] callViewContract: contract not created');
+
+    if (!process.env.PRODUCTION) {
+      await wait(500);
+    }
+
     return (await (<any>contract)['view_market'](arg)) as MarketView;
   });
 

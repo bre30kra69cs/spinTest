@@ -24,6 +24,7 @@ export const store = createStore<StoreState>(
       markets: [],
       isMarketsLoading: false,
       isMarketOpen: false,
+      isViewMarketsLoading: false,
     },
   },
   {

@@ -6,6 +6,7 @@ declare global {
     const keyStores = NearApi.keyStores;
     const WalletConnection = NearApi.WalletConnection;
     const Contract = NearApi.Contract;
+    const utils = NearApi.utils;
 
     type WalletConnection = NearApi.WalletConnection;
     type Near = NearApi.Near;

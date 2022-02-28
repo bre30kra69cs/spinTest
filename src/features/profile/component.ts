@@ -30,7 +30,7 @@ export const Profile = createComponent({
         ${
           !!store.getState().user.id
             ? `<div class="list_item">
-                <div class="list_head">Имя</div>
+                <div class="list_head">Name</div>
                 <div class="list_tail">${store.getState().user.id}</div>
               </div>`
             : ''
@@ -38,15 +38,15 @@ export const Profile = createComponent({
         ${
           !!store.getState().user.balance
             ? `<div class="list_item">
-                <div class="list_head">Баланс</div>
+                <div class="list_head">Balance</div>
                 <div class="list_tail">${store.getState().user.balance}</div>
               </div>`
             : ''
         }
         <div class="list_item">
-          <div class="list_head">Контракт</div>
+          <div class="list_head">Contract</div>
           <div class="list_tail">
-            <a href="${CONTRACT_LINK}">Перейти</a>
+            <a href="${CONTRACT_LINK}">link</a>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export const Profile = createComponent({
         !!store.getState().markets.markets
           ? `<div class="list">
                 <div class="list_item list__gap-s">
-                  <div class="list_head">Маркет</div>
+                  <div class="list_head">Market</div>
                   <div class="list_tail">
                     <select class="profile_select">
                       ${store.getState().markets.markets.map((market) => {
