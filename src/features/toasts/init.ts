@@ -3,6 +3,8 @@ import {memo} from '../store/memo';
 import {Toast} from '../../types';
 import {removeToast} from './actions/removeToast';
 
+const selector = memo();
+
 export const initToasts = () => {
   const toasts = document.getElementById('toasts');
   if (!toasts) return;
@@ -21,7 +23,7 @@ export const initToasts = () => {
   };
 
   store.listen(
-    memo()(
+    selector(
       (state) => state.toasts,
       (state) => {
         const toDelete = Object.keys(cache).filter((key) =>

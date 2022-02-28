@@ -11,11 +11,10 @@ export const Signin = createComponent({
     </section>`,
   effect: () => {
     const signInButton = document.getElementsByClassName('signin_button').item(0);
-    if (!signInButton) return;
-    signInButton.addEventListener('click', signIn);
+    signInButton?.addEventListener('click', signIn);
 
     return () => {
-      signInButton.removeEventListener('click', signIn);
+      signInButton?.removeEventListener('click', signIn);
     };
   },
 });

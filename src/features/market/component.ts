@@ -53,7 +53,7 @@ export const Market = createComponent({
     const unlisten = store.listen(
       selector(
         (state) => state.markets.isMarketOpen,
-        (state) => {
+        () => {
           rerender();
         },
       ),

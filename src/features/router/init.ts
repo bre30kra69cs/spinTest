@@ -6,12 +6,14 @@ import {createRender} from '../../utils/render';
 
 const render = createRender();
 
+const selector = memo();
+
 export const initRouter = () => {
   const root = document.getElementById('root');
   if (!root) return;
 
   store.listen(
-    memo()(
+    selector(
       (state) => state.user.isSignedIn,
       (state) => {
         if (state.user.isSignedIn) {

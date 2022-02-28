@@ -18,6 +18,10 @@ const onView = () => {
   openMarket();
 };
 
+const idSelector = memo();
+const balanceSelector = memo();
+const marketsSelector = memo();
+
 export const Profile = createComponent({
   template: () => `
     <section class="profile">
@@ -80,7 +84,7 @@ export const Profile = createComponent({
     viewButton?.addEventListener('click', onView);
 
     const unlistenuUserId = store.listen(
-      memo()(
+      idSelector(
         (state) => state.user.id,
         (state) => {
           if (state.user.id) {
@@ -90,8 +94,8 @@ export const Profile = createComponent({
       ),
     );
 
-    const unlistenuBalance = store.listen(
-      memo()(
+    const unlistenBalance = store.listen(
+      balanceSelector(
         (state) => state.user.balance,
         (state) => {
           if (state.user.balance) {
@@ -101,9 +105,21 @@ export const Profile = createComponent({
       ),
     );
 
+    const unlistenMarkets = store.listen(
+      marketsSelector(
+        (state) => state.markets.markets.length,
+        (state) => {
+          if (state.markets.markets.length) {
+            rerender();
+          }
+        },
+      ),
+    );
+
     return () => {
       unlistenuUserId?.();
-      unlistenuBalance?.();
+      unlistenBalance?.();
+      unlistenMarkets?.();
       signOutButton?.removeEventListener('click', signOut);
       marketSelector?.removeEventListener('change', onSelectMarket);
       viewButton?.removeEventListener('click', onView);
