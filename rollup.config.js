@@ -1,11 +1,15 @@
 import typescript from '@rollup/plugin-typescript';
 import replace from '@rollup/plugin-replace';
+import {terser} from 'rollup-plugin-terser';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default {
   input: 'src/index.ts',
   output: {
     dir: 'dist',
     format: 'es',
+    sourcemap: isProduction ? false : 'inline',
   },
   plugins: [
     typescript({
@@ -13,8 +17,9 @@ export default {
     }),
     replace({
       values: {
-        'process.env.PRODUCTION': process.env.NODE_ENV === 'production',
+        'process.env.PRODUCTION': isProduction,
       },
     }),
+    isProduction && terser(),
   ],
 };
