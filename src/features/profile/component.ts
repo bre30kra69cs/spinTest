@@ -71,6 +71,43 @@ export const Profile = createComponent({
           : ''
       }
       <style>
+        .list {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .list__gap {
+          margin-bottom: 2em;
+        }
+
+        .list__gap-s {
+          margin-bottom: 1em;
+        }
+
+        .list_item {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1;
+        }
+
+        .list_head {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        .list_tail {
+          display: flex;
+          flex-direction: column;
+          flex: 2;
+          justify-content: center;
+          align-items: flex-end;
+        }
       </style>
     </section>`,
   effect: (rerender) => {
