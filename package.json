@@ -1,7 +1,7 @@
 {
-  "name": "spintest",
+  "name": "spin_test",
   "version": "0.0.1",
-  "description": "spin test task",
+  "description": "spinTest task",
   "author": "Andrey Krasovsky <an.krasowsckij@gmail.com>",
   "license": "MIT",
   "scripts": {
